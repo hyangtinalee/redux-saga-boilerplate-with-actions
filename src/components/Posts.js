@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+// import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPostsRequest } from "../actions"; // Import the action creator
 
@@ -6,9 +7,12 @@ export default function Posts() {
     const dispatch = useDispatch();
     const { posts, loading, error } = useSelector((state) => state.posts);
 
-    useEffect(() => {
-        dispatch(fetchPostsRequest());
-    }, [dispatch]);
+    // Either dispatch an action using useEffect (for dispatching upon component mount) or button click like below
+    // This is a common pattern for fetching data as soon as a component loads, providing a seamless user experience without requiring manual interaction
+
+    // useEffect(() => {
+    //     dispatch(fetchPostsRequest()); // Dispatch the fetch request action
+    // }, [dispatch]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -16,6 +20,13 @@ export default function Posts() {
     return (
         <div>
             <h1>Posts</h1>
+            <button
+                onClick={() => {
+                    dispatch(fetchPostsRequest());
+                }}
+            >
+                Fetch Posts
+            </button>
             <ul>
                 {posts.map((post) => (
                     <li key={post.id}>
