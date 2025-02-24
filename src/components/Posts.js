@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchPostsRequest } from "../actions"; // Import the action creator
 
 export default function Posts() {
     const dispatch = useDispatch();
     const { posts, loading, error } = useSelector((state) => state.posts);
 
     useEffect(() => {
-        dispatch({ type: "FETCH_POSTS_REQUEST" });
+        dispatch(fetchPostsRequest());
     }, [dispatch]);
 
     if (loading) return <div>Loading...</div>;

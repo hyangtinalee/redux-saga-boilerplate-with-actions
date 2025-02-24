@@ -1,5 +1,5 @@
 {
-    "name": "redux-saga-boilerplate",
+    "name": "redux-saga-boilerplate-with-actions",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
